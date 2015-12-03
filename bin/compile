@@ -25,7 +25,7 @@ status "Installing java."
 cd $vendor_dir
 tar xzvf $JRE_ARHIVE_FILE
 # ./$JRE_ARHIVE
-rm $JRE_ARHIVE
+# rm $JRE_ARHIVE
 JRE_DIR=$vendor_dir/$(ls -l | tr " " "\n" | grep jre)
 status "JRE_DIR=$JRE_DIR"
 mv $JRE_DIR jre
