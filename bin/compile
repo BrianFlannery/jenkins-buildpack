@@ -23,10 +23,10 @@ source $bp_dir/bin/common.sh
 
 mkdir -p $vendor_dir
 
-status "Installing java."
+status "Checking for java."
 
 # # # BEGIN Fetch Java
-thidDir=`pwd` ;
+thisDir=`pwd` ;
 [[ -e $bp_dir/files ]] || mkdir -p $bp_dir/files ;
 cd $bp_dir/files ;
 javaBase=`basename "$JRE_ARHIVE_FILE"` ;
@@ -44,6 +44,8 @@ if [[ ! -e $javaBase ]] ; then
 fi ;
 cd $thisDir ;
 # # # END Fetch Java
+
+status "Installing java."
 
 # cp $JRE_ARHIVE_FILE $vendor_dir
 cd $vendor_dir
