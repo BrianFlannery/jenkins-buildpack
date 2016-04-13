@@ -10,6 +10,9 @@ bp_dir=$(cd $(dirname $0); cd ..; pwd)
 vendor_dir=$build_dir/vendor
 JRE_ARHIVE=jre-8u66-linux-x64.gz
 JRE_ARHIVE_FILE=$bp_dir/files/jre-8u66-linux-x64.gz
+JAVA_VERSION_MAJOR=8 ;
+JAVA_VERSION_MINOR=66 ;
+JAVA_VERSION_BUILD=17 ;
 
 # CF Common
 BUILDPACK_PATH=$bp_dir
@@ -21,6 +24,26 @@ source $bp_dir/bin/common.sh
 mkdir -p $vendor_dir
 
 status "Installing java."
+
+# # # BEGIN Fetch Java
+thidDir=`pwd` ;
+cd $bp_dir/files ;
+javaBase=`basename "$JRE_ARHIVE_FILE"` ;
+if [[ ! -e $javaBase ]] ; then
+  # http://download.oracle.com/otn/java/jdk/8u66-b17/server-jre-8u66-linux-x64.tar.gz
+  u=http://download.oracle.com/otn-pub/java/jdk ;
+  u="$u/${JAVA_VERSION_MAJOR}u${JAVA_VERSION_MINOR}-b${JAVA_VERSION_BUILD}" ;
+  u="$u/server-jre-${JAVA_VERSION_MAJOR}u${JAVA_VERSION_MINOR}-linux-x64.tar.gz" ;
+  curl --fail --silent --location --retry 3 \
+    --header "Cookie: oraclelicense=accept-securebackup-cookie; " \
+    "$u" /
+    > $javaBase ;
+  [[ -e $javaBase ]] || echo "ERROR: Failed to download $javaBase from Oracle.  $u" ;
+  ls -l $javaBase ;
+fi ;
+cd $thisDir ;
+# # # END Fetch Java
+
 # cp $JRE_ARHIVE_FILE $vendor_dir
 cd $vendor_dir
 tar xzf $JRE_ARHIVE_FILE
