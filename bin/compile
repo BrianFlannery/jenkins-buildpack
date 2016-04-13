@@ -27,6 +27,7 @@ status "Installing java."
 
 # # # BEGIN Fetch Java
 thidDir=`pwd` ;
+[[ -e $bp_dir/files ]] || mkdir -p $bp_dir/files ;
 cd $bp_dir/files ;
 javaBase=`basename "$JRE_ARHIVE_FILE"` ;
 if [[ ! -e $javaBase ]] ; then
