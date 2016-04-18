@@ -28,7 +28,8 @@ status "Checking for java."
 # # # BEGIN Fetch Java
 thisDir=`pwd` ;
 [[ -e $bp_dir/files ]] || mkdir -p $bp_dir/files ;
-cd $bp_dir/files ;
+cd $build_dir ; echo -n 'build_dir ' ; pwd ;
+cd $bp_dir/files ; pwd ;
 javaBase=`basename "$JRE_ARHIVE_FILE"` ;
 if [[ ! -e $javaBase ]] ; then
   # http://download.oracle.com/otn/java/jdk/8u66-b17/server-jre-8u66-linux-x64.tar.gz
