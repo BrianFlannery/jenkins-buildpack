@@ -8,11 +8,13 @@ build_dir=$1
 cache_dir=$2
 bp_dir=$(cd $(dirname $0); cd ..; pwd)
 vendor_dir=$build_dir/vendor
-JRE_ARHIVE=jre-8u66-linux-x64.gz
-JRE_ARHIVE_FILE=$bp_dir/files/jre-8u66-linux-x64.gz
+# JRE_ARHIVE=jre-8u66-linux-x64.gz
 JAVA_VERSION_MAJOR=8 ;
 JAVA_VERSION_MINOR=66 ;
 JAVA_VERSION_BUILD=17 ;
+JRE_ARHIVE="jre-${JAVA_VERSION_MAJOR}u${JAVA_VERSION_MINOR}-linux-x64.gz"
+# JRE_ARHIVE_FILE=$bp_dir/files/jre-8u66-linux-x64.gz
+JRE_ARHIVE_FILE=$bp_dir/files/$JRE_ARHIVE
 
 # CF Common
 BUILDPACK_PATH=$bp_dir
@@ -25,7 +27,7 @@ mkdir -p $vendor_dir
 
 status "Checking for java."
 
-# # # BEGIN Fetch Java
+# # # BEGIN Fetch Java (in case you do not have a JRE in the "files" folder of your buildpack)
 thisDir=`pwd` ;
 [[ -e $bp_dir/files ]] || mkdir -p $bp_dir/files ;
 cd $build_dir ; echo -n 'build_dir ' ; pwd ;
