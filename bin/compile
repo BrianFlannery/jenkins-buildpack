@@ -71,6 +71,7 @@ mkdir -p $build_dir/.profile.d
 # $HOME is set here https://github.com/cloudfoundry/dea_ng/blob/c2217e5fbcb866c9f4b6fd248b39138a83cbb479/lib/dea/starting/env.rb#L15
 echo "export PATH=\"\$HOME/vendor/jre/bin:\$HOME/bin:\$PATH\";" > $build_dir/.profile.d/jre.sh
 
+# Make any build_dir binaries available: 
 [[ -e $build_dir/bin ]] || mkdir $build_dir/bin ;
 mv $bp_dir/build_dir_bin/* $build_dir/bin/ ;
 
