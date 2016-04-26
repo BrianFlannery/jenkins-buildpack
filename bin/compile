@@ -4,6 +4,8 @@ set -e            # fail fast
 set -o pipefail   # don't ignore exit codes when piping output
 # set -x          # enable debugging
 
+DEBUG='1' ; # Blank ('') for no DEBUG
+
 build_dir=$1
 cache_dir=$2
 bp_dir=$(cd $(dirname $0); cd ..; pwd)
@@ -29,6 +31,17 @@ status "Checking for java."
 
 # # # BEGIN Fetch Java (in case you do not have a JRE in the "files" folder of your buildpack)
 thisDir=`pwd` ;
+
+if [[ $DEBUG ]] ; then
+  for x in thisDir build_dir cache_dir bp_dir ; do
+    echo "DEBUG: $x = ${!x}" ;
+    cd ${!x} ;
+    ls -lart ;
+    echo ;
+  done ;
+  cd $thisDir ;
+fi ;
+
 [[ -e $bp_dir/files ]] || mkdir -p $bp_dir/files ;
 cd $build_dir ; echo -n 'build_dir ' ; pwd ;
 cd $bp_dir/files ; pwd ;
