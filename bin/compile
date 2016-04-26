@@ -42,6 +42,24 @@ if [[ $DEBUG ]] ; then
   cd $thisDir ;
 fi ;
 
+if [[ -e $build_dir/vendored-jenkins.war ]] ; then
+  cd $build_dir ;
+  # tar xf vendored-jenkins.war ;
+  unzip -q vendored-jenkins.war ;
+  cd $thisDir ;
+
+  if [[ $DEBUG ]] ; then
+    for x in build_dir ; do
+      echo "DEBUG: $x = ${!x}" ;
+      cd ${!x} ;
+      ls -lart ;
+      echo ;
+    done ;
+    cd $thisDir ;
+  fi ;
+
+fi ;
+
 [[ -e $bp_dir/files ]] || mkdir -p $bp_dir/files ;
 cd $build_dir ; echo -n 'build_dir ' ; pwd ;
 cd $bp_dir/files ; pwd ;
@@ -74,7 +92,7 @@ mv $JRE_DIR jre
 
 status "Repack jenkins.war"
 cd $build_dir
-zip -q -r jenkins.war * -x "vendor/*"
+zip -q -r jenkins.war * -x "vendor/*" -x ".profile.d/*" -x "*.war"
 
 # Update the PATH
 status "Building runtime environment"
