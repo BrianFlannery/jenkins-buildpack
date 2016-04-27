@@ -32,7 +32,7 @@ else
   # arg2="jenkins-jnlp.$domain:$nextPort" ;
   arg2="$server:$nextPort" ;
   flag3='-i' ;
-  arg3='10s' ;
+  arg3='10' ;
 fi ;
 if [[ $DEBUG ]] ; then
   echo "DEBUG: In $0:" ;
