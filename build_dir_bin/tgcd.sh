@@ -15,6 +15,8 @@ what=tgcd ;
 jnlpPort=$1 ;
 which=$2 ;
 server=$3 ; # Only used if which=client.
+initial_sleep=$4 ;
+[[ $initial_sleep ]] || initial_sleep=1 ;
 [[ $which ]] || which=server ;
 which="$which-$which" ;
 [[ $server ]] || server=$JNLP_APP_IP ;
@@ -46,6 +48,9 @@ if [[ $DEBUG -gt 0 ]] ; then
   id ;
   echo ;
 fi ;
+
+sleep $initial_sleep ;
+
 # nohup /home/$USER/app/bin/$what $mode $flag1 $arg1 $flag2 $arg2 $flag3 $arg3 -m f \
 #   & echo "Backgrounding '$what $mode $flag1 $arg1 $flag2 $arg2 $flag3 $arg3 -m f '." ;
 nohup /home/$USER/app/bin/$what $mode $flag1 $arg1 $flag2 $arg2 $flag3 $arg3 -m f $logFileFlag $logFileArg $logLevelFlag $logLevelArg \
