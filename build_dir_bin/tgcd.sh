@@ -31,6 +31,8 @@ else
   flag2='-c' ;
   # arg2="jenkins-jnlp.$domain:$nextPort" ;
   arg2="$server:$nextPort" ;
+  flag3='-i' ;
+  arg3='10s' ;
 fi ;
 if [[ $DEBUG ]] ; then
   echo "DEBUG: In $0:" ;
@@ -38,8 +40,8 @@ if [[ $DEBUG ]] ; then
   id ;
   echo ;
 fi ;
-nohup /home/$USER/app/bin/$what $mode $flag1 $arg1 $flag2 $arg2 \
-  & echo "Backgrounding '$what $mode $flag1 $arg1 $flag2 $arg2'." ;
+nohup /home/$USER/app/bin/$what $mode $flag1 $arg1 $flag2 $arg2 $flag3 $arg3 -m f \
+  & echo "Backgrounding '$what $mode $flag1 $arg1 $flag2 $arg2 $flag3 $arg3 -m f '." ;
 sleep $sleepy ;
 #
 
