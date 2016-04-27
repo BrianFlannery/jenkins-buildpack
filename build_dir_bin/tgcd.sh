@@ -15,7 +15,7 @@ which="$which-$which" ;
 [[ $server ]] || server=$JNLP_APP_IP ;
 [[ $jnlpPort ]] || jnlpPort=$JENKINS_SLAVE_AGENT_PORT ;
 [[ $jnlpPort ]] || jnlpPort=44422 ;
-[[ $nextPort ]] || nextPort=$JENKINS_SLAVE_AGENT_PORT_EXT ;
+[[ $nextPort ]] || nextPort=$JENKINS_SLAVE_AGENT_JNLP_PORT ;
 [[ $nextPort ]] || nextPort=$((jnlpPort + 1)) ;
 if [[ "$which" == "server-server" ]] ; then
   mode='-L' ;
