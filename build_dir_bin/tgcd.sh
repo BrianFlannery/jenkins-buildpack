@@ -7,7 +7,7 @@
 DEBUG=$DEBUG_JJ ; # Zero (0) for no debug output.
 [[ $DEBUG ]] || DEBUG=0 ;
 logFileFlag='-l' ;
-logFileArg='/tmp/log.tgcd.sh.txt' ;
+logFileArg='/tmp/log.tgcd.txt' ;
 logLevelFlag='-g' ;
 logLevelArg='3' ;
 sleepy=10 ;
