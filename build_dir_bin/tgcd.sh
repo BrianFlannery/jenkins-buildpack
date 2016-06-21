@@ -67,9 +67,11 @@ stillUp() {
     ps -ef | egrep -v grep | grep -v diego ;
     free ;
     echo ;
-    echo -n 'x preview: ' ;
-    ps -ef | egrep -v egrep | egrep -v "$what[.]sh" ;
-    echo ;
+    if [[ $DEBUG -gt 3 ]] ; then
+      echo -n 'x preview: ' ;
+      ps -ef | egrep -v egrep | egrep -v "$what[.]sh" ;
+      echo ;
+    fi ;
     echo "x = '$x'" ;
     echo -e '\n' ;
   fi ;
